@@ -1,6 +1,6 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="assets/styles/index.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/index.css?rnd=<?=rand(111,999)?>">
 </head>
 <body>
 <main class="main">

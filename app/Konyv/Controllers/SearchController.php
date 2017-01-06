@@ -7,6 +7,7 @@ use Konyv\Models\BookModel;
 class SearchController extends Controller
 {
   protected $type;
+  protected $books;
   protected $bookModel;
 
   public function __construct()
@@ -14,15 +15,12 @@ class SearchController extends Controller
     parent::__construct();
     $this->bookModel = new bookModel();
     $this->getType();
+    $this->search();
   }
 
   public function getType()
   {
-    if (isset($_POST['type'])) {
-      $this->type = $_POST['type'];
-    } else {
-      $this->type = $_GET['type'];
-    }
+    $this->type = $this->request('type');
   }
 
   public function typeSelect($type)
@@ -34,7 +32,12 @@ class SearchController extends Controller
 
   public function search()
   {
-    $this->bookModel->getByName();
+    $search = $this->request('search');
+    if ($search) {
+      $this->books = $this->bookModel->getByValues([
+        $this->type => $this->request('search')
+      ]);
+    }
   }
 
 }

@@ -48,4 +48,27 @@ class Controller extends stdClass
     }
     $this->render($this->viewsPath . $view . '.php');
   }
+
+  public function get($key)
+  {
+    if (isset($_GET[$key])) {
+      return $_GET[$key];
+    }
+  }
+
+  public function post($key)
+  {
+    if (isset($_POST[$key])) {
+      return $_POST[$key];
+    }
+  }
+
+  public function request($key)
+  {
+    $request = $this->post($key);
+    if ($request) {
+      return $request;
+    }
+    return $this->get($key);
+  }
 }

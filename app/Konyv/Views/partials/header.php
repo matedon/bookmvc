@@ -6,7 +6,7 @@
       </a>
     </li>
     <li class="header-nav__li">
-      <a class="header-nav__a" href="index.php?go=search&type=author">
+      <a class="header-nav__a" href="index.php?go=search&type=writer">
         Keresés szerzők szerint
       </a>
     </li>

@@ -2,6 +2,8 @@
 
 namespace Konyv\Models;
 
+use PDO;
+
 class BookModel extends Model
 {
   public function __construct()
@@ -9,9 +11,37 @@ class BookModel extends Model
     parent::__construct();
   }
 
-  public function getByName()
+  public function getByValues($args)
   {
-
+    foreach ($args as $key => $val) {
+      $args[$key] = '%' . $val . '%';
+    }
+    $params = [];
+    foreach (['title', 'isbn', 'writer'] as $key) {
+      $params[$key] = isset($args[$key]) ? $args[$key] : '%';
+    }
+    $this->res = $this->db->prepare('
+      SELECT
+        kon.konyvid,
+        kon.ISBN as isbn,
+        kon.cim,
+        szr.nev
+      FROM
+        konyvek.konyv kon
+      LEFT JOIN
+        konyvszerzo ksz
+          ON ksz.konyvid = kon.konyvid
+      LEFT JOIN
+        szerzo szr
+          ON szr.szerzoid = ksz.szerzoid
+      WHERE
+        TRUE
+        AND kon.cim LIKE :title
+        AND kon.ISBN LIKE :isbn
+        AND szr.nev LIKE :writer
+    ');
+    $this->res->execute($params);
+    return $this->res->fetchAll();
   }
 
 }

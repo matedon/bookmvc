@@ -8,6 +8,7 @@ use stdClass;
 class Model extends stdClass
 {
   public $db;
+  protected $res;
   protected $config;
 
   public function __construct()
