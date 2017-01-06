@@ -69,3 +69,7 @@ table {
   margin: 0;
   padding: 2px 4px;
 }
+
+.search-table input {
+  width: 100%;
+}

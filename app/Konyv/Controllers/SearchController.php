@@ -6,21 +6,28 @@ use Konyv\Models\BookModel;
 
 class SearchController extends Controller
 {
-  protected $type;
-  protected $books;
   protected $bookModel;
+  protected $type;
+  protected $search;
+  protected $books;
 
   public function __construct()
   {
     parent::__construct();
     $this->bookModel = new bookModel();
     $this->getType();
-    $this->search();
+    $this->getSearch();
+    $this->doSearch();
   }
 
   public function getType()
   {
     $this->type = $this->request('type');
+  }
+
+  public function getSearch()
+  {
+    $this->search = $this->request('search');
   }
 
   public function typeSelect($type)
@@ -30,14 +37,12 @@ class SearchController extends Controller
     }
   }
 
-  public function search()
+  public function doSearch()
   {
-    $search = $this->request('search');
-    if ($search) {
+    if ($this->search) {
       $this->books = $this->bookModel->getByValues([
-        $this->type => $this->request('search')
+        $this->type => $this->search
       ]);
     }
   }
-
 }

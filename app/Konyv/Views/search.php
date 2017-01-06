@@ -12,7 +12,7 @@
     <label>írja be a keresendő kifejezést!</label>
   </div>
   <div class="row">
-    <input type="text" name="search" placeholder="Keresés...">
+    <input type="text" name="search" placeholder="Keresés..." value="<?= $this->search ?>">
   </div>
   <div class="row">
     <button type="submit">

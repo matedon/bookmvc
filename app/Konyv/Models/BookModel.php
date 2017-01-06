@@ -27,7 +27,7 @@ class BookModel extends Model
         kon.cim,
         szr.nev
       FROM
-        konyvek.konyv kon
+        konyv kon
       LEFT JOIN
         konyvszerzo ksz
           ON ksz.konyvid = kon.konyvid
@@ -44,4 +44,37 @@ class BookModel extends Model
     return $this->res->fetchAll();
   }
 
+  public function newBook($args)
+  {
+    $this->res = $this->db->prepare('
+      INSERT INTO konyv
+      SET cim = :title, ISBN = :isbn
+    ');
+    $this->res->execute([
+      'title' => $args['title'],
+      'isbn' => $args['isbn']
+    ]);
+    $this->res->fetch();
+    $bookId = $this->db->lastInsertId();
+
+    $this->res = $this->db->prepare('
+      INSERT INTO szerzo
+      SET nev = :writer
+    ');
+    $this->res->execute([
+      'writer' => $args['writer']
+    ]);
+    $this->res->fetch();
+    $writerId = $this->db->lastInsertId();
+
+    $this->res = $this->db->prepare('
+      INSERT INTO konyvszerzo
+      SET konyvid = :konyvid, szerzoid = :szerzoid
+    ');
+    $this->res->execute([
+      'konyvid' => $bookId,
+      'szerzoid' => $writerId
+    ]);
+    $this->res->fetch();
+  }
 }
