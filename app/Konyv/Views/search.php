@@ -3,9 +3,9 @@
   <div class="row">
     <select name="type">
       <option>Kérem válasszon</option>
-      <option value="title" <?= $sco->typeSelect('title') ?>>Könyv címe alapján</option>
-      <option value="isbn" <?= $sco->typeSelect('isbn') ?>>ISBN</option>
-      <option value="author" <?= $sco->typeSelect('author') ?>>Szerző</option>
+      <option value="title" <?= $this->typeSelect('title') ?>>Könyv címe alapján</option>
+      <option value="isbn" <?= $this->typeSelect('isbn') ?>>ISBN</option>
+      <option value="author" <?= $this->typeSelect('author') ?>>Szerző</option>
     </select>
   </div>
   <div class="row">

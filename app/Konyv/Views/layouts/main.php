@@ -4,8 +4,8 @@
 </head>
 <body>
 <main class="main">
-  <?php include 'app/Konyv/Views/partials/header.php'; ?>
-  <?php include 'app/Konyv/Views/partials/content.php'; ?>
+  <?php $this->renderView('partials/header'); ?>
+  <?php $this->renderView('partials/content'); ?>
 </main>
 </body>
 </html>

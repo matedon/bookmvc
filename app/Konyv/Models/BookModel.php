@@ -9,4 +9,9 @@ class BookModel extends Model
     parent::__construct();
   }
 
+  public function getByName()
+  {
+
+  }
+
 }

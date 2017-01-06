@@ -11,6 +11,7 @@ class SearchController extends Controller
 
   public function __construct()
   {
+    parent::__construct();
     $this->bookModel = new bookModel();
     $this->getType();
   }
@@ -37,5 +38,3 @@ class SearchController extends Controller
   }
 
 }
-
-//$sco = new searchController();

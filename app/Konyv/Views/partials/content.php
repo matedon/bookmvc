@@ -1,3 +1,3 @@
 <section>
-  <?php $this->render() ?>
+  <?php $this->renderView() ?>
 </section>
