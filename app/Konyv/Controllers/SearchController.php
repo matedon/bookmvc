@@ -34,7 +34,7 @@ class SearchController extends Controller
 
   public function search()
   {
-
+    $this->bookModel->getByName();
   }
 
 }

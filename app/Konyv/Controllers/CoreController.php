@@ -11,7 +11,7 @@ class CoreController extends Controller
 
   public function __construct()
   {
-    $name = isset($_GET['go']) ? $_GET['go'] : 'welcome';
+    $name = isset($_GET['go']) ? $_GET['go'] : 'home';
     $current = __NAMESPACE__ . '\\' . ucfirst($name) . 'Controller';
     $controller = new $current();
     $controller->setView($name);
